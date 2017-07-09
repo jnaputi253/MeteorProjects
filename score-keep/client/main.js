@@ -1,41 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Meteor} from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor';
+import { Tracker } from 'meteor/tracker';
 
-const players = [{
-    id: '1',
-    name: 'Ashley',
-    score: 10
-}, {
-    id: '2',
-    name: 'Juan',
-    score: 9
-}, {
-    id: '3',
-    name: 'Stormi',
-    score: 8
-}, {
-    id: '4',
-    name: 'Andrew',
-    score: 7
-}];
+import { Players } from './../imports/api/players';
 
-const renderPlayers = () => {
-
+const renderPlayers = (playerList) => {
+    return playerList.map(player => {
+        return (
+            <p key={player._id}>
+                {player.name} has {player.score} points!
+            </p>
+        );
+    });
 }
 
 Meteor.startup(() => {
-    let title = 'Scor Keep';
-    let name = 'Juan';
-    let jsx = (
-        <div>
-            <h1>Hello, {name}!</h1>
-            <p>This is my second paragraph :p</p>
-        </div>
+    Tracker.autorun(() => {
+        let players = Players.find().fetch();
+        let title = 'Score Keep';
+        let name = 'Juan';
+        let jsx = (
+            <div>
+                <h1>{title}</h1>
+                <h1>Hello, {name}!</h1>
+                <p>This is my second paragraph :p</p>
+                {renderPlayers(players)}
+            </div>
 
-    );
-    ReactDOM.render(
-        jsx,
-        document.querySelector('#app')
-    );
+        );
+        ReactDOM.render(
+            jsx,
+            document.querySelector('#app')
+        );
+    });
 });

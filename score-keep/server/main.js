@@ -1,6 +1,11 @@
-// import './../imports/utils';
-import {greetUser, name} from './../imports/utils';
-import Math from './../imports/math';
+import { Meteor } from 'meteor/meteor';
+import { Players } from './../imports/api/players';
 
-console.log('Log from /server/main.js');
-console.log(Math(3, 15));
+Meteor.startup(() => {
+    Players.insert({
+        name: 'Ashley',
+        score: 18
+    });
+
+    console.log(Players.find().fetch());
+});
