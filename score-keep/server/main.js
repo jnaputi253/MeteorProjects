@@ -3,7 +3,7 @@ import { Players } from './../imports/api/players';
 
 Meteor.startup(() => {
     Players.insert({
-        name: 'Ashley',
+        name: 'Test',
         score: 18
     });
 
