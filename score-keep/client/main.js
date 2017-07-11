@@ -5,32 +5,65 @@ import { Tracker } from 'meteor/tracker';
 
 import { Players } from './../imports/api/players';
 
+
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let playerName = e.target.playerName.value;
+    if(playerName) {
+        e.target.playerName.value = '';
+        Players.insert({
+            name: playerName,
+            score: 1
+        });
+    }
+};
+
 const renderPlayers = (playerList) => {
     return playerList.map(player => {
         return (
-            <p key={player._id}>
-                {player.name} has {player.score} points!
-            </p>
+            <div key={player._id}>
+                <p>
+                    {player.name} has {player.score} points!
+                    <button onClick={() =>
+                        Players.update(player._id, {
+                            $inc: {score: 1}
+                        })
+                    }>+1</button>
+                    <button onClick={() => {
+                        Players.update(player._id, {
+                            $inc: {score: -1}
+                        })
+                    }}>-1</button>
+                    <button onClick={() => {Players.remove(player._id)}}>X</button>
+                </p>
+            </div>
         );
     });
 }
 
+const App = () => {
+    let players = Players.find().fetch();
+    return (
+        <div>
+          <div>
+            {renderPlayers(players)}
+          </div>
+          <div>
+              <form onSubmit={handleSubmit}>
+                  <input type='text' name="playerName" placeholder='Player name' />
+                  <button type='submit'>Add Player</button>
+              </form>
+          </div>
+        </div>
+    );
+}
+
 Meteor.startup(() => {
     Tracker.autorun(() => {
-        let players = Players.find().fetch();
-        let title = 'Score Keep';
-        let name = 'Juan';
-        let jsx = (
-            <div>
-                <h1>{title}</h1>
-                <h1>Hello, {name}!</h1>
-                <p>This is my second paragraph :p</p>
-                {renderPlayers(players)}
-            </div>
-
-        );
         ReactDOM.render(
-            jsx,
+            <App />,
             document.querySelector('#app')
         );
     });
