@@ -4,8 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 
 import { Players } from './../imports/api/players';
-
-
+import TitleBar from './../imports/ui/TitleBar';
+import AddPlayer from './../imports/ui/AddPlayer';
 
 const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,14 +48,12 @@ const App = () => {
     return (
         <div>
           <div>
-            {renderPlayers(players)}
+            <TitleBar />
           </div>
           <div>
-              <form onSubmit={handleSubmit}>
-                  <input type='text' name="playerName" placeholder='Player name' />
-                  <button type='submit'>Add Player</button>
-              </form>
+            {renderPlayers(players)}
           </div>
+          <AddPlayer />
         </div>
     );
 }
