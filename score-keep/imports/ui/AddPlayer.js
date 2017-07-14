@@ -3,7 +3,6 @@ import { Players } from './../api/players';
 
 export default class AddPlayer extends Component {
   handleSubmit(e) {
-    console.log('AddPlayer::handleSubmit() called');
     let playerName = e.target.playerName.value;
     e.preventDefault();
 
