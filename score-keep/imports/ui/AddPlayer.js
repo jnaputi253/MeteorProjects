@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { Players } from './../api/players';
 
 export default class AddPlayer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleSubmit(e) {
     console.log('AddPlayer::handleSubmit() called');
     let playerName = e.target.playerName.value;
@@ -23,7 +19,7 @@ export default class AddPlayer extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <input type='text' name='playerName' placeholder='Player name' />
           <button type='submit'>Add Player</button>
         </form>

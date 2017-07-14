@@ -34,7 +34,7 @@ const App = () => {
     let players = Players.find().fetch();
     return (
         <div>
-          <TitleBar />
+          <TitleBar title='Score App' subtitle='by Juan' />
           <div>
             {renderPlayers(players)}
           </div>
