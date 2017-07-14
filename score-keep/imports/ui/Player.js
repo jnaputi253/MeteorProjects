@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Players } from './../api/players';
 
 export default class Player extends Component {
@@ -47,4 +49,8 @@ export default class Player extends Component {
       </div>
     );
   }
+}
+
+Player.propTypes = {
+  player: PropTypes.object.isRequired
 }
