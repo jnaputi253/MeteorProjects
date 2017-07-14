@@ -7,19 +7,6 @@ import { Players } from './../imports/api/players';
 import TitleBar from './../imports/ui/TitleBar';
 import AddPlayer from './../imports/ui/AddPlayer';
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-
-    let playerName = e.target.playerName.value;
-    if(playerName) {
-        e.target.playerName.value = '';
-        Players.insert({
-            name: playerName,
-            score: 1
-        });
-    }
-};
-
 const renderPlayers = (playerList) => {
     return playerList.map(player => {
         return (
@@ -47,13 +34,11 @@ const App = () => {
     let players = Players.find().fetch();
     return (
         <div>
-          <div>
-            <TitleBar />
-          </div>
+          <TitleBar />
           <div>
             {renderPlayers(players)}
           </div>
-          <AddPlayer />
+          <AddPlayer score={10} />
         </div>
     );
 }
