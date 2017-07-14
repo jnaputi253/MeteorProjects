@@ -10,7 +10,8 @@ import Player from './../imports/ui/Player';
 
 const renderPlayers = (playerList) => {
     return playerList.map(player => {
-      return <Player key={player._id} />;
+      console.log(player.score);
+      return <Player key={player._id} player={player} />;
 
         // return (
         //     <div key={player._id}>
