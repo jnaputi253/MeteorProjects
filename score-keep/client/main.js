@@ -6,10 +6,12 @@ import { Tracker } from 'meteor/tracker';
 import App from './../imports/ui/App';
 
 Meteor.startup(() => {
-    Tracker.autorun(() => {
-        ReactDOM.render(
-            <App />,
-            document.querySelector('#app')
-        );
-    });
+  let title = 'Score Keep';
+
+  Tracker.autorun(() => {
+      ReactDOM.render(
+          <App title={title} />,
+          document.querySelector('#app')
+      );
+  });
 });
