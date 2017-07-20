@@ -39,13 +39,11 @@ export default class Player extends Component {
 
   render() {
     return (
-      <div>
-        <p>
-          {this.state.name} has {this.state.score} points!
-          <button onClick={this.handlePointIncrement}>+1</button>
-          <button onClick={this.handlePointDecrement}>-1</button>
-          <button onClick={this.handlePlayerDeletion}>X</button>
-        </p>
+      <div className='item'>
+        <p>{this.state.name} has {this.state.score} points!</p>
+        <button className='button button--round' onClick={this.handlePointIncrement}>+1</button>
+        <button className='button button--round' onClick={this.handlePointDecrement}>-1</button>
+        <button className='button button--round' onClick={this.handlePlayerDeletion}>X</button>
       </div>
     );
   }

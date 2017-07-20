@@ -12,9 +12,11 @@ const App = ({title}) => {
 
   return (
     <div>
-      <TitleBar title={title} />
-      <PlayerList players={players} />
-      <AddPlayer />
+      <TitleBar title={title} subtitle="Created by Juan Naputi" />
+      <div className='wrapper'>
+        <PlayerList players={players} />
+        <AddPlayer />
+      </div>
     </div>
   );
 }

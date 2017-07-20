@@ -4,15 +4,19 @@ import PropTypes from 'prop-types';
 const TitleBar = ({title, subtitle}) => {
   if(subtitle) {
     return (
-      <div>
-        <h1>{title}</h1>
-        <h2>{subtitle}</h2>
+      <div className='title-bar'>
+        <div className='wrapper'>
+          <h1>{title}</h1>
+          <h2 className='title-bar__subtitle'>{subtitle}</h2>
+        </div>
       </div>
     );
   } else {
     return (
-      <div>
-        <h1>{title}</h1>
+      <div className='title-bar'>
+        <div className='wrapper'>
+          <h1>{title}</h1>
+        </div>
       </div>
     );
   }
